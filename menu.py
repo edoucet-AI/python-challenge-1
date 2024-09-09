@@ -185,9 +185,9 @@ while place_order:
 
 # Print out the customer's order
 print("This is what we are preparing for you.\n")
-for customer_order in order_data:
-    for o, p in order_data.menu_items():
-        print(f'{o}: {p}')
+#for customer_order in order_data:
+    #for o, p in order_data.menu_items():
+        #print(f'{o}: {p}')
 # Uncomment the following line to check the structure of the order
 
 
@@ -196,21 +196,28 @@ print("--------------------------|--------|----------")
 #print(order_data)
 
 # 6. Loop through the items in the customer's order
-for menu_choice in order_data():
+for menu_choice in range(len(order_data)):
     # 7. Store the dictionary items as variables
-    menu_item_name = order_data['Item Name']
-    quantity = order_data['Quantity']
-    price = menu_items[int(menu_selection)]["Price"]
+    menu_item_name = order_data[menu_choice]['Item name']
+    quantity = order_data[menu_choice]['Quantity']
+    price = order_data[menu_choice]['Price']
+    
 
     # 8. Calculate the number of spaces for formatted printing
-
+    item_name_space = 26 - len(menu_item_name)
+    price_space = 7 - len(str(price))
+    
 
     # 9. Create space strings
-
-
+    item_space_number = " " * item_name_space
+    price_space_number = " " * price_space
     # 10. Print the item name, price, and quantity
-
+    print(f"{menu_item_name}{item_space_number}|${price}{price_space_number}|{quantity}")
 
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
+total_price = sum(item["Price"]*item["Quantity"] for item in order_data)
+#for item in order_data
+    #total_price += item["Price"] * item["Quantity"]
+print(f"Total Price ${total_price :.2f}")
